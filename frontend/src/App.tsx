@@ -1,6 +1,14 @@
-// Remove the import statement for 'websocket' and replace it with:
-// import { w3cwebsocket as WebSocket } from 'websocket';
 import React, { useState, useEffect } from 'react';
+import { StatContainer } from './StatContainer';
+import styled from 'styled-components';
+
+// TODO: make responsive
+const PageContainerDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+`
 
 function App() {
   const [textColor, setTextColor] = useState('#3498db'); // Initial color
@@ -19,11 +27,13 @@ function App() {
   }, []);
 
   return (
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <span style={{ fontWeight: '800', fontSize: '100px', color: textColor }}>
-              Cat Sage Stats
-          </span>
-      </div>
+    <PageContainerDiv>
+      {/* <span style={{ fontWeight: '800', fontSize: '100px', color: textColor }}>
+          Cat Sage Stats
+      </span> */}
+      
+      <StatContainer/>
+    </PageContainerDiv>
   );
 }
 
