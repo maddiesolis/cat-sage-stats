@@ -52,12 +52,38 @@ const sendPlayerStateUpdate = () => {
     });
 };
 
-// Change player state every 10 seconds
-setInterval(() => {
-    sendPlayerStateUpdate();
-}, 10 * 1000); // 10 seconds
-
 function getRandomPlayerState() {
     const randomNumber = Math.random();
     return randomNumber < 0.5 ? 'jump' : 'fall';
 }
+
+// This range results in approx. 1929 updates per hour (reflects statistic)
+const MIN_INTERVAL = 1000;
+const MAX_INTERVAL = 3000;
+
+// Function to generate a random interval within the specified range
+const getRandomInterval = () => {
+    return Math.floor(Math.random() * (MAX_INTERVAL - MIN_INTERVAL)) + MIN_INTERVAL;
+};
+
+// Function to send player state updates to all connected clients
+const sendPlayerStateUpdateWithRandomInterval = () => {
+    const interval = getRandomInterval();
+    console.log(`Sending update. Next update in ${interval} milliseconds`);
+    sendPlayerStateUpdate();
+
+    // Schedule the next update recursively
+    setTimeout(sendPlayerStateUpdateWithRandomInterval, interval);
+};
+
+sendPlayerStateUpdateWithRandomInterval();
+
+/**
+ * STATS: frequency of sexual assault against women
+ * Est. global female population: 3.8 billion (as of 2022)
+ * Est. number of women affected: 1/3 * 3.8 billion = 1.27 billion
+ * Est. annual occurences: 1.27 billion / avg. life exp. 72 year = 16.9 million occurences per year
+ * Freq per day: 16.9 million / 365 days = 46,301 occurences per day
+ * Freq per hour: 46,301 / 24 hours = 1929 occurences per hour
+ * Freq per minute: 1929 / 60 minutes = 32 occurences per minute
+ */

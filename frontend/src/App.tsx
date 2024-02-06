@@ -19,7 +19,7 @@ function App() {
     // Make animations all last same amount of time
     setTimeout(() => {
       setPlayerState('idle');
-    }, 1000);
+    }, 700);
   }
 
   useEffect(() => {
