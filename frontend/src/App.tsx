@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StatContainer } from './StatContainer';
 import styled from 'styled-components';
 import { Sprite } from './SpriteAnimation';
-import { Dropdown } from './Dropdown';
 
 // TODO: make responsive
 const PageContainerDiv = styled.div`
@@ -13,31 +11,33 @@ const PageContainerDiv = styled.div`
 `
 
 function App() {
+  // TODO: add load event listener?
   const [playerState, setPlayerState] = useState('idle');
 
-  const handleDropDownChange = (value: string) => {
-    setPlayerState(value);
+  const handleServerRequest = ({ serverPlayerState }: { serverPlayerState: string}) => {
+    setPlayerState(serverPlayerState);
+    // Make animations all last same amount of time
+    setTimeout(() => {
+      setPlayerState('idle');
+    }, 1000);
   }
 
-  // const [textColor, setTextColor] = useState('#3498db'); // Initial color
+  useEffect(() => {
+      const ws = new WebSocket('ws://localhost:8080');
 
-  // useEffect(() => {
-  //     const ws = new WebSocket('ws://localhost:8080');
+      // Listen for player state updates from the server
+      ws.onmessage = (event) => {
+          const data = JSON.parse(event.data);
+          handleServerRequest({ serverPlayerState: data.playerState });
+      };
 
-  //     // Listen for color updates from the server
-  //     ws.onmessage = (event) => {
-  //         const data = JSON.parse(event.data);
-  //         setTextColor(data.textColor);
-  //     };
-
-  //     // Close the WebSocket connection when the component unmounts
-  //     return () => ws.close();
-  // }, []);
+      // Close the WebSocket connection when the component unmounts
+      return () => ws.close();
+  }, []);
 
   return (
     <>
       <Sprite playerState={playerState}/>
-      <Dropdown onChange={handleDropDownChange}/>
     </>
   );
 }

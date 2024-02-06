@@ -22,11 +22,29 @@ server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
 
-let textColor = '#3498db'; // Initial color
+// Listen for WebSocket connections
+wss.on('connection', (ws) => {
+    console.log('Client connected');
+    
+    // Send initial player state when a client connects
+    sendPlayerStateUpdate();
 
-// Function to send color updates to all connected clients
-const sendColorUpdate = () => {
-    const update = JSON.stringify({ textColor });
+    // Listen for messages from the client
+    ws.on('message', (message) => {
+        console.log(`Received message from client: ${message}`);
+        // You can implement further logic here if needed
+    });
+
+    // Handle client disconnection
+    ws.on('close', () => {
+        console.log('Client disconnected');
+    });
+});
+
+// Function to send player state updates to all connected clients
+const sendPlayerStateUpdate = () => {
+    const playerState = getRandomPlayerState();
+    const update = JSON.stringify({ playerState });
     wss.clients.forEach(client => {
         if (client.readyState === WebSocket.OPEN) {
             client.send(update);
@@ -34,14 +52,12 @@ const sendColorUpdate = () => {
     });
 };
 
-// Change text color every 10 seconds
+// Change player state every 10 seconds
 setInterval(() => {
-    textColor = getRandomColor();
-    sendColorUpdate();
-}, 10 * 1000); // 10 seconds in milliseconds
+    sendPlayerStateUpdate();
+}, 10 * 1000); // 10 seconds
 
-function getRandomColor() {
-    // Implement your color generation logic here
-    // For simplicity, generating a random hex color
-    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+function getRandomPlayerState() {
+    const randomNumber = Math.random();
+    return randomNumber < 0.5 ? 'jump' : 'fall';
 }
