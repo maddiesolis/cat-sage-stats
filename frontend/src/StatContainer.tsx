@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 
 // TODO: make responsive
@@ -13,7 +14,7 @@ const TitleSpan = styled.div`
     font-weight: 700;
     font-size: 80px;
     line-height: 90px;
-    color: #264653;
+    color: ${(props: any) => props.color || '#264653'};
 `
 // TODO: make responsive
 const StatBoxDiv = styled.div`
@@ -25,11 +26,38 @@ const StatBoxDiv = styled.div`
     border: 1px solid grey;
     border-radius: 4px;
 `
+// TODO: make responsive
+const StyledCanvas = styled.canvas`
+    border: 5px solid black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 778px;
+    height: 625px;
+`
+
 export const StatContainer: React.FC = (props) => {
+    const [textColor, setTextColor] = useState('#3498db'); // Initial color
+
+    useEffect(() => {
+        const ws = new WebSocket('ws://localhost:8080');
+
+        // Listen for color updates from the server
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            setTextColor(data.textColor);
+        };
+
+        // Close the WebSocket connection when the component unmounts
+        return () => ws.close();
+    }, []);
     return (
         <ContainerDiv>
-            <TitleSpan>Cat Sage Stats</TitleSpan>
-            <StatBoxDiv>animation here</StatBoxDiv>
+            {/* <TitleSpan color={textColor}>Cat Sage Stats</TitleSpan> */}
+            <StyledCanvas>
+                animation here
+            </StyledCanvas>
         </ContainerDiv>
     )
 }
