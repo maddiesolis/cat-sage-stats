@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Sprite } from './Sprite';
+import Background from './Background';
 
 // TODO: make responsive
 const PageContainerDiv = styled.div`
@@ -37,6 +38,7 @@ function App() {
 
   return (
     <>
+      <Background/>
       <Sprite playerState={playerState}/>
     </>
   );
