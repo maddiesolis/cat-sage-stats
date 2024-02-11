@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Sprite } from './SpriteAnimation';
+import { Sprite } from './Sprite';
 
 // TODO: make responsive
 const PageContainerDiv = styled.div`
