@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Sprite } from './Sprite';
-import Background from './Background';
-import background from './background.png'
-import spritesheet from './spritesheet.png'
+import { Sprite } from './animation/Sprite';
+import Background from './animation/Background';
+import background from './spritesheets/background.png'
+import hands from './spritesheets/hands.png'
 
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
   return (
     <>
       <Background spriteWidth={2000} spriteHeight={2000} staggerFrames={5} animationSheet={background} canvasWidth={2000} canvasHeight={2000} numFrames={13}/>
-      <Sprite playerState={playerState} spriteWidth={700} spriteHeight={700} staggerFrames={5} spriteSheet={spritesheet} onAnimationEnd={handleAnimationEnd}/>
+      <Sprite playerState={playerState} spriteWidth={700} spriteHeight={700} staggerFrames={5} spriteSheet={hands} onAnimationEnd={handleAnimationEnd}/>
     </>
   );
 }
