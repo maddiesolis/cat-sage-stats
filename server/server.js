@@ -52,9 +52,26 @@ const sendPlayerStateUpdate = () => {
     });
 };
 
+let previousPlayerState = '';
+
 function getRandomPlayerState() {
-    const randomNumber = Math.random();
-    return randomNumber < 0.5 ? 'jump' : 'fall';
+    let randomNumber;
+    let playerState;
+    
+    do {
+        randomNumber = Math.floor(Math.random() * 6);
+        playerState = [
+            'hand1',
+            'hand2',
+            'hand3',
+            'hand4',
+            'hand5',
+            'hand6'
+        ][randomNumber];
+    } while (playerState === previousPlayerState); // Ensure the new player state is different from the previous one
+    
+    previousPlayerState = playerState; // Update the previous player state
+    return playerState;
 }
 
 // This range results in approx. 1929 updates per hour (reflects statistic)

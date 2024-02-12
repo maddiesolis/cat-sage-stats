@@ -1,15 +1,14 @@
 import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
-import shadow_dog from './shadow_dog.png'
 
 const StyledCanvas = styled.canvas`
-    border: 5px solid black;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
+    width: 700px;
+    height: 700px;
+    border-radius: 8px;
 
     @media (max-width: 600px) {
         width: 300px;
@@ -28,17 +27,18 @@ interface SpriteProps {
     spriteWidth: number;
     spriteHeight: number;
     staggerFrames: number;
+    onAnimationEnd?: () => void;
 }
 
-export const Sprite: React.FC<SpriteProps> = ({ playerState, spriteSheet, spriteWidth, spriteHeight, staggerFrames }) => {
+export const Sprite: React.FC<SpriteProps> = ({ playerState, spriteSheet, spriteWidth, spriteHeight, staggerFrames, onAnimationEnd }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
    
     useEffect(() => {
         const canvas = canvasRef.current;
-        if (!canvas || !playerState) return; 
+        if (!canvas || playerState === 'none') return; 
         const ctx = canvas.getContext('2d');
-        const CANVAS_WIDTH = canvas.width = 600;
-        const CANVAS_HEIGHT = canvas.height = 600;
+        const CANVAS_WIDTH = canvas.width = 700;
+        const CANVAS_HEIGHT = canvas.height = 700;
 
         const playerImage = new Image();
         playerImage.src = spriteSheet;
@@ -48,17 +48,30 @@ export const Sprite: React.FC<SpriteProps> = ({ playerState, spriteSheet, sprite
         const spriteAnimations: { [key: string]: { loc: Frame[] }} = {};
         const animationStates = [
             {
-                name: 'idle',
-                frames: 7
+                name: 'hand1',
+                frames: 17
             },
             {
-                name: 'jump',
-                frames: 7
+                name: 'hand2',
+                frames: 17
             },
             {
-                name: 'fall',
-                frames: 7
+                name: 'hand3',
+                frames: 17
+            },
+            {
+                name: 'hand4',
+                frames: 19
+            },
+            {
+                name: 'hand5',
+                frames: 22
+            },
+            {
+                name: 'hand6',
+                frames: 16
             }
+
         ]
         animationStates.forEach((state, index) => {
             let frames: {loc: Frame[]} = {
@@ -74,6 +87,14 @@ export const Sprite: React.FC<SpriteProps> = ({ playerState, spriteSheet, sprite
 
         playerImage.onload = () => {
             const animate = () => {
+                if (gameFrame >= staggerFrames * spriteAnimations[playerState].loc.length) {
+                    if (onAnimationEnd) {
+                        onAnimationEnd(); // Call onAnimationEnd callback if provided
+                    }
+                    ctx?.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+                    return; // Stop animation & clear canvas when it reaches end of sequence
+                }
+                
                 ctx?.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
                 let position = Math.floor(gameFrame/staggerFrames) % spriteAnimations[playerState].loc.length;     // cycle through horizontal animation
                 let frameX = spriteWidth * position;                        // frame within one animation row
@@ -90,7 +111,8 @@ export const Sprite: React.FC<SpriteProps> = ({ playerState, spriteSheet, sprite
             };
             animate();
         };
-    }, [playerState]);
+    }, [playerState, onAnimationEnd]);
+    
     return (
         <StyledCanvas ref={canvasRef}/>
     )

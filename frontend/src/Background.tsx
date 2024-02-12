@@ -2,13 +2,14 @@ import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
 
 const StyledCanvas = styled.canvas`
-    border: 5px solid black;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 600px;
-    height: 600px;
+    width: 700px;
+    height: 700px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
     @media (max-width: 600px) {
         width: 300px;
