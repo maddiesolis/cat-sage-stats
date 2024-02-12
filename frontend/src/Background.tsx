@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
-import test_background from './test_background.png'
 
 const StyledCanvas = styled.canvas`
     border: 5px solid black;
@@ -17,29 +16,35 @@ const StyledCanvas = styled.canvas`
     }
 `
 
-const spriteWidth = 2000;
-const spriteHeight = 2000;
-const staggerFrames = 5;            // animation speed
+interface BackgroundProps {
+    spriteWidth: number;
+    spriteHeight: number;
+    staggerFrames: number;
+    animationSheet: string;
+    canvasWidth: number;
+    canvasHeight: number;
+    numFrames: number;
+}
 
-const Background: React.FC = () => {
+const Background: React.FC<BackgroundProps> = ({ spriteWidth, spriteHeight, staggerFrames, animationSheet, canvasWidth, canvasHeight, numFrames}) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
    
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return; 
         const ctx = canvas.getContext('2d');
-        const CANVAS_WIDTH = canvas.width = 2000;
-        const CANVAS_HEIGHT = canvas.height = 2000;
+        const CANVAS_WIDTH = canvas.width = canvasWidth;
+        const CANVAS_HEIGHT = canvas.height = canvasHeight;
 
         const playerImage = new Image();
-        playerImage.src = test_background;
+        playerImage.src = animationSheet;
 
         let gameFrame = 0;
 
         playerImage.onload = () => {
             const animate = () => {
                 ctx?.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-                const position = Math.floor(gameFrame / staggerFrames) % 13; // 13 different frames in the animation
+                const position = Math.floor(gameFrame / staggerFrames) % numFrames; // 13 different frames in the animation
                 const frameX = spriteWidth * position; // Frame within one animation row
                 const frameY = 0;               // No vertical offset
                 ctx?.drawImage(

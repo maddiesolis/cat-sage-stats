@@ -24,9 +24,13 @@ interface Frame {
 
 interface SpriteProps {
     playerState: string;
+    spriteSheet: string;
+    spriteWidth: number;
+    spriteHeight: number;
+    staggerFrames: number;
 }
 
-export const Sprite: React.FC<SpriteProps> = ({ playerState }) => {
+export const Sprite: React.FC<SpriteProps> = ({ playerState, spriteSheet, spriteWidth, spriteHeight, staggerFrames }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
    
     useEffect(() => {
@@ -37,13 +41,9 @@ export const Sprite: React.FC<SpriteProps> = ({ playerState }) => {
         const CANVAS_HEIGHT = canvas.height = 600;
 
         const playerImage = new Image();
-        playerImage.src = shadow_dog;
-
-        const spriteWidth = 575;        // sheet width / number of rows  
-        const spriteHeight = 523;       // sheet height / number of cols
+        playerImage.src = spriteSheet;
 
         let gameFrame = 0;
-        const staggerFrames = 5;        // animation speed
 
         const spriteAnimations: { [key: string]: { loc: Frame[] }} = {};
         const animationStates = [
