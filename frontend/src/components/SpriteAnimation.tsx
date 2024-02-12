@@ -1,27 +1,12 @@
 import React, { useEffect, useRef } from "react"
-import styled from "styled-components"
-
-const StyledCanvas = styled.canvas`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 700px;
-    height: 700px;
-    border-radius: 8px;
-
-    @media (max-width: 600px) {
-        width: 300px;
-        height: 300px;
-    }
-`
+import { StyledCanvas } from "./BackgroundAnimation";
 
 interface Frame {
     x: number;
     y: number;
 }
 
-interface SpriteProps {
+interface SpriteAnimationProps {
     playerState: string;
     spriteSheet: string;
     spriteWidth: number;
@@ -30,7 +15,7 @@ interface SpriteProps {
     onAnimationEnd?: () => void;
 }
 
-export const Sprite: React.FC<SpriteProps> = ({ playerState, spriteSheet, spriteWidth, spriteHeight, staggerFrames, onAnimationEnd }) => {
+export const SpriteAnimation: React.FC<SpriteAnimationProps> = ({ playerState, spriteSheet, spriteWidth, spriteHeight, staggerFrames, onAnimationEnd }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
    
     useEffect(() => {

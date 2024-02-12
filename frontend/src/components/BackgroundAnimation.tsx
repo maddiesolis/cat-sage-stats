@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react"
 import styled from "styled-components"
 
-const StyledCanvas = styled.canvas`
+export const StyledCanvas = styled.canvas`
     position: absolute;
     top: 50%;
     left: 50%;
@@ -9,7 +9,7 @@ const StyledCanvas = styled.canvas`
     width: 700px;
     height: 700px;
     border-radius: 8px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 
     @media (max-width: 600px) {
         width: 300px;
@@ -17,7 +17,7 @@ const StyledCanvas = styled.canvas`
     }
 `
 
-interface BackgroundProps {
+interface BackgroundAnimationProps {
     spriteWidth: number;
     spriteHeight: number;
     staggerFrames: number;
@@ -27,7 +27,7 @@ interface BackgroundProps {
     numFrames: number;
 }
 
-const Background: React.FC<BackgroundProps> = ({ spriteWidth, spriteHeight, staggerFrames, animationSheet, canvasWidth, canvasHeight, numFrames}) => {
+export const BackgroundAnimation: React.FC<BackgroundAnimationProps> = ({ spriteWidth, spriteHeight, staggerFrames, animationSheet, canvasWidth, canvasHeight, numFrames}) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
    
     useEffect(() => {
@@ -65,5 +65,3 @@ const Background: React.FC<BackgroundProps> = ({ spriteWidth, spriteHeight, stag
         <StyledCanvas ref={canvasRef}/>
     )
 }
-
-export default Background;

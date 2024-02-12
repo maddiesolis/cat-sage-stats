@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Sprite } from './animation/Sprite';
-import Background from './animation/Background';
+import { SpriteAnimation } from './components/SpriteAnimation';
+import { BackgroundAnimation } from './components/BackgroundAnimation';
 import background from './spritesheets/background.png'
 import hands from './spritesheets/hands.png'
-
 
 function App() {
   const [playerState, setPlayerState] = useState('none');
@@ -31,8 +30,8 @@ function App() {
 
   return (
     <>
-      <Background spriteWidth={2000} spriteHeight={2000} staggerFrames={5} animationSheet={background} canvasWidth={2000} canvasHeight={2000} numFrames={13}/>
-      <Sprite playerState={playerState} spriteWidth={700} spriteHeight={700} staggerFrames={5} spriteSheet={hands} onAnimationEnd={handleAnimationEnd}/>
+      <BackgroundAnimation spriteWidth={2000} spriteHeight={2000} staggerFrames={5} animationSheet={background} canvasWidth={2000} canvasHeight={2000} numFrames={13}/>
+      <SpriteAnimation playerState={playerState} spriteWidth={700} spriteHeight={700} staggerFrames={5} spriteSheet={hands} onAnimationEnd={handleAnimationEnd}/>
     </>
   );
 }
