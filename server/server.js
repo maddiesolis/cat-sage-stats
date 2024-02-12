@@ -52,12 +52,11 @@ const sendPlayerStateUpdate = () => {
     });
 };
 
+// Sends random player state but ensures the same state isn't sent twice in a row
 let previousPlayerState = '';
-
 function getRandomPlayerState() {
     let randomNumber;
     let playerState;
-    
     do {
         randomNumber = Math.floor(Math.random() * 6);
         playerState = [
@@ -69,7 +68,6 @@ function getRandomPlayerState() {
             'hand6'
         ][randomNumber];
     } while (playerState === previousPlayerState); // Ensure the new player state is different from the previous one
-    
     previousPlayerState = playerState; // Update the previous player state
     return playerState;
 }
@@ -103,14 +101,4 @@ sendPlayerStateUpdateWithRandomInterval();
  * Freq per day: 16.9 million / 365 days = 46,301 occurences per day
  * Freq per hour: 46,301 / 24 hours = 1929 occurences per hour
  * Freq per minute: 1929 / 60 minutes = 32 occurences per minute
- */
-
-/**
- * SPRITE SHEET
- * Sheet width: 6876
- * Number cols: 12
- * Frame width: 573 (updated to 575)
- * Sheet height: 5230
- * Number rows: 10
- * Frame height: 523
  */
