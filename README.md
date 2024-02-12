@@ -2,6 +2,7 @@
 
 ## Tech Stack
 **Frontend**: React with Typescript
+
 **Server**: Node.js with Express
 
 ## Concept
