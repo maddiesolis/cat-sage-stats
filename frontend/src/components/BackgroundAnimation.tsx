@@ -65,7 +65,7 @@ export const BackgroundAnimation: React.FC<BackgroundAnimationProps> = ({ sprite
             };
             animate();
         };
-    }, []);
+    });
     return (
         <StyledCanvas ref={canvasRef}/>
     )

@@ -96,7 +96,7 @@ export const SpriteAnimation: React.FC<SpriteAnimationProps> = ({ playerState, s
             };
             animate();
         };
-    }, [playerState, onAnimationEnd]);
+    });
     
     return (
         <StyledCanvas ref={canvasRef}/>
