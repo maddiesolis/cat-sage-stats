@@ -29,7 +29,7 @@ Visualization of frequency of sexual assault against women. The site is a simula
 - Ensures that the same update is not sent twice in a row (e.g. 'hand1' is not sent consecutively)
 
 ## Artwork
-The artwork displayed is a combination of digital collage and illustration. It is a visual metaphor that represents the frequency of sexual assaults against women, globally. The moon and female figure represent an interpretation of the divine feminine. The figure is an appropriation of 'Selene' by Albert Aublet, a historical personification of the moon goddess Selene. I chose these classical symbols for femininity as a way to allow viewers to understand the piece with more immediacy. The animated hands are a direct representation of the divine feminine being "manhandled".
+The artwork displayed is a combination of digital collage and illustration. It is a visual metaphor that represents the frequency of sexual assaults against women, globally. The moon and female figure represent an interpretation of the divine feminine. The figure is an appropriation of 'Selene' by Albert Aublet (1880), a historical personification of the moon goddess Selene. I chose these classical symbols for femininity as a way to allow viewers to understand the piece with more immediacy. The animated hands are a direct representation of the divine feminine being "manhandled".
 - Photograph of the moon was taken by me
 - Figure on moon is an appropriation of 'Selene' by Albert Aublet
 - Hands animations are a combination of found images and my own photographs
