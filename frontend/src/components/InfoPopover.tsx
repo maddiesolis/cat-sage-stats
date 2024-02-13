@@ -42,7 +42,7 @@ export const InfoPopover: React.FC = () => {
                             moon-like figure, a woman has been sexually 
                             assaulted somewhere in the world.
                             Data from the World Health Organization regarding sexual 
-                            abuses against women were gathered and fed into this application's 
+                            abuses against women was gathered and fed into this application's 
                             server. The server controls what is animated, reflecting
                             real-time sexual assault occurences.
                         </PopoverBody>
