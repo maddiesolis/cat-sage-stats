@@ -51,7 +51,7 @@ function App() {
     <>
       <InfoPopover/>
       <CanvasContainer>
-        <BackgroundAnimation spriteWidth={2000} spriteHeight={2000} staggerFrames={5} animationSheet={background} canvasWidth={2000} canvasHeight={2000} numFrames={13}/>
+        <BackgroundAnimation spriteWidth={700} spriteHeight={688} staggerFrames={7} animationSheet={background} canvasWidth={700} canvasHeight={688} numFrames={13}/>
         <SpriteAnimation playerState={playerState} spriteWidth={700} spriteHeight={700} staggerFrames={5} spriteSheet={hands} onAnimationEnd={handleAnimationEnd}/>
       </CanvasContainer>
     </>
