@@ -21,7 +21,7 @@ function App() {
   }
 
   useEffect(() => {
-    const ws = new WebSocket('ws://shark-app-epd3d.ondigitalocean.app');
+    const ws = new WebSocket('wss://shark-app-epd3d.ondigitalocean.app');
 
     // Error handler
     ws.onerror = (error) => {
