@@ -21,17 +21,27 @@ function App() {
   }
 
   useEffect(() => {
-      const ws = new WebSocket('ws://localhost:8080');
+    const ws = new WebSocket('ws://shark-app-epd3d.ondigitalocean.app');
 
-      // Listen for player state updates from the server
-      ws.onmessage = (event) => {
-          const data = JSON.parse(event.data);
-          handleServerRequest({ serverPlayerState: data.playerState });
-      };
+    // Error handler
+    ws.onerror = (error) => {
+        console.error('WebSocket error:', error);
+    };
 
-      // Close the WebSocket connection when the component unmounts
-      return () => ws.close();
-  }, []);
+    // Listen for player state updates from the server
+    ws.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        handleServerRequest({ serverPlayerState: data.playerState });
+    };
+
+    // Close the WebSocket connection when the component unmounts
+    return () => {
+      if (ws.readyState === 1) {
+        ws.close();
+      }
+    };
+}, []);
+
 
   const handleAnimationEnd = () => {
     setPlayerState('none');
