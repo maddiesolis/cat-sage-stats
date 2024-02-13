@@ -20,27 +20,27 @@ function App() {
     setPlayerState(serverPlayerState);
   }
 
-  useEffect(() => {
-    const ws = new WebSocket('ws://shark-app-epd3d.ondigitalocean.app');
+//   useEffect(() => {
+//     const ws = new WebSocket('ws://shark-app-epd3d.ondigitalocean.app');
 
-    // Error handler
-    ws.onerror = (error) => {
-        console.error('WebSocket error:', error);
-    };
+//     // Error handler
+//     ws.onerror = (error) => {
+//         console.error('WebSocket error:', error);
+//     };
 
-    // Listen for player state updates from the server
-    ws.onmessage = (event) => {
-        const data = JSON.parse(event.data);
-        handleServerRequest({ serverPlayerState: data.playerState });
-    };
+//     // Listen for player state updates from the server
+//     ws.onmessage = (event) => {
+//         const data = JSON.parse(event.data);
+//         handleServerRequest({ serverPlayerState: data.playerState });
+//     };
 
-    // Close the WebSocket connection when the component unmounts
-    return () => {
-      if (ws.readyState === 1) {
-        ws.close();
-      }
-    };
-}, []);
+//     // Close the WebSocket connection when the component unmounts
+//     return () => {
+//       if (ws.readyState === 1) {
+//         ws.close();
+//       }
+//     };
+// }, []);
 
 
   const handleAnimationEnd = () => {
@@ -52,7 +52,7 @@ function App() {
       <InfoPopover/>
       <CanvasContainer>
         <BackgroundAnimation spriteWidth={2000} spriteHeight={2000} staggerFrames={5} animationSheet={background} canvasWidth={2000} canvasHeight={2000} numFrames={13}/>
-        <SpriteAnimation playerState={playerState} spriteWidth={700} spriteHeight={700} staggerFrames={5} spriteSheet={hands} onAnimationEnd={handleAnimationEnd}/>
+        {/* <SpriteAnimation playerState={playerState} spriteWidth={700} spriteHeight={700} staggerFrames={5} spriteSheet={hands} onAnimationEnd={handleAnimationEnd}/> */}
       </CanvasContainer>
     </>
   );
