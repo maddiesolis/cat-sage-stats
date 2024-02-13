@@ -2,12 +2,11 @@ import {
     Popover,
     PopoverTrigger,
     PopoverContent,
-    PopoverHeader,
     PopoverBody,
     PopoverArrow,
     PopoverCloseButton,
     ChakraProvider,
-    Icon
+    Button
 } from '@chakra-ui/react';
 import styled from 'styled-components';
 import { useMediaQuery } from '@chakra-ui/react';
@@ -30,12 +29,11 @@ export const InfoPopover: React.FC = () => {
             <PopoverDiv>
                 <Popover placement={popoverPlacement}>
                     <PopoverTrigger>
-                    <Icon w={12} h={12} color={'#808080'} _hover={{ color: '#525252' }} />
+                    <Button fontSize={20}>About</Button>
                     </PopoverTrigger>
                     <PopoverContent style={{boxShadow:"none"}} w={popoverSize}>
                         <PopoverArrow />
                         <PopoverCloseButton />
-                        <PopoverHeader fontSize={20} fontWeight={700}>About</PopoverHeader>
                         <PopoverBody fontSize={18}>
                             This is a visualisation of the 
                             frequency of sexual assaults 
@@ -43,7 +41,7 @@ export const InfoPopover: React.FC = () => {
                             Each time a hand touches the 
                             moon-like figure, a woman has been sexually 
                             assaulted somewhere in the world.
-                            Data from the WHO and UN regarding sexual 
+                            Data from the World Health Organization regarding sexual 
                             abuses against women were gathered and fed into this application's 
                             server. The server controls what is animated, reflecting
                             real-time sexual assault occurences.
