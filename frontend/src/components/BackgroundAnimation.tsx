@@ -10,7 +10,7 @@ export const StyledCanvas = styled.canvas`
     box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 
     @media (min-width: 1600px) {
-        top: 6rem;
+        top: 7rem;
     }
     @media (max-width: 800px) {
         width: 500px;

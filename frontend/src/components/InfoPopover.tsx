@@ -6,8 +6,8 @@ import {
     PopoverBody,
     PopoverArrow,
     PopoverCloseButton,
-    Button,
-    ChakraProvider
+    ChakraProvider,
+    Icon
 } from '@chakra-ui/react';
 import styled from 'styled-components';
 import { useMediaQuery } from '@chakra-ui/react';
@@ -23,27 +23,30 @@ const PopoverDiv = styled.div`
 export const InfoPopover: React.FC = () => {
     // Popover placement depends on screen size
     const [reachedMinBreakPoint] = useMediaQuery('(max-width: 600px)');
-    const popoverPlacement = reachedMinBreakPoint ? 'top' : 'left-start'
+    const popoverPlacement = reachedMinBreakPoint ? 'top' : 'left-start';
+    const popoverSize = reachedMinBreakPoint ? '20rem' : '25rem';
     return (
         <ChakraProvider>
             <PopoverDiv>
                 <Popover placement={popoverPlacement}>
                     <PopoverTrigger>
-                        <Button>About</Button>
+                    <Icon w={12} h={12} color={'#808080'} _hover={{ color: '#525252' }} />
                     </PopoverTrigger>
-                    <PopoverContent>
+                    <PopoverContent style={{boxShadow:"none"}} w={popoverSize}>
                         <PopoverArrow />
                         <PopoverCloseButton />
-                        <PopoverHeader>About</PopoverHeader>
-                        <PopoverBody>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            Mauris nisi quam, semper vel sem ut, egestas maximus massa. 
-                            Aliquam orci tortor, egestas lacinia ultricies nec, dignissim 
-                            quis leo. Proin ut placerat sem, nec pharetra dui. Curabitur 
-                            sodales eu arcu ut aliquam. Nam fermentum tellus eu neque 
-                            consectetur suscipit. In porta rhoncus quam ut pharetra. 
-                            Nulla lacinia, elit eu fermentum convallis, sem nisi luctus lectus, 
-                            id luctus ante mi vel urna. Aliquam non feugiat sapien.
+                        <PopoverHeader fontSize={20} fontWeight={700}>About</PopoverHeader>
+                        <PopoverBody fontSize={18}>
+                            This is a visualisation of the 
+                            frequency of sexual assaults 
+                            against women.
+                            Each time a hand touches the 
+                            moon-like figure, a woman has been sexually 
+                            assaulted somewhere in the world.
+                            Data from the WHO and UN regarding sexual 
+                            abuses against women were gathered and fed into this application's 
+                            server. The server controls what is animated, reflecting
+                            real-time sexual assault occurences.
                         </PopoverBody>
                     </PopoverContent>
                 </Popover>
