@@ -1,8 +1,8 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 // import { SpriteAnimation } from './components/SpriteAnimation';
 import { BackgroundAnimation } from './components/BackgroundAnimation';
 import background from './spritesheets/background.png'
-import hands from './spritesheets/hands.png'
+// import hands from './spritesheets/hands.png'
 import styled from 'styled-components';
 import { InfoPopover } from './components/InfoPopover';
 
