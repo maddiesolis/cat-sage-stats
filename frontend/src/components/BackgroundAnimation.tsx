@@ -3,14 +3,19 @@ import styled from "styled-components"
 
 export const StyledCanvas = styled.canvas`
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 4.5rem;
     width: 700px;
     height: 700px;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 
+    @media (min-width: 1600px) {
+        top: 6rem;
+    }
+    @media (max-width: 800px) {
+        width: 500px;
+        height: 500px;
+    }
     @media (max-width: 600px) {
         width: 300px;
         height: 300px;
