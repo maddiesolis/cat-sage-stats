@@ -17,7 +17,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 server.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
