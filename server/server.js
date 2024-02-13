@@ -24,7 +24,7 @@ server.listen(port, () => {
 
 // Listen for WebSocket connections
 wss.on('connection', (ws) => {
-    console.log('Client connected');
+    console.log('New client connected');
     
     // Send initial player state when a client connects
     sendPlayerStateUpdate();
