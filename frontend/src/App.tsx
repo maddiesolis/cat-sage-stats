@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BackgroundAnimation } from './components/BackgroundAnimation';
-import background_reduced from './spritesheets/background_reduced.png'
-import hands_reduced from './spritesheets/hands_reduced.png'
+import background_reduced from './spritesheets/sa/background_reduced.png'
+import hands_reduced from './spritesheets/sa/hands_reduced.png'
 import styled from 'styled-components';
 import { InfoPopover } from './components/InfoPopover';
 import { SpriteAnimation } from './components/SpriteAnimation';
@@ -31,7 +31,9 @@ function App() {
     // Listen for player state updates from the server
     ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
-        handleServerRequest({ serverPlayerState: data.playerState });
+        if (data.hasOwnProperty('playerState')) {
+          handleServerRequest({ serverPlayerState: data.playerState });
+        }
     };
 
     // Close the WebSocket connection when the component unmounts
