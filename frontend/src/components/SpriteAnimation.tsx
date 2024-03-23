@@ -12,7 +12,7 @@ interface SpriteAnimationProps {
     staggerFrames: number;
     canvasWidth: number;
     canvasHeight: number;
-    // onAnimationEnd?: () => void;
+    onAnimationEnd?: () => void;
 }
 export const SpriteAnimation: React.FC<SpriteAnimationProps> = ({ 
     playerState, 
@@ -21,8 +21,8 @@ export const SpriteAnimation: React.FC<SpriteAnimationProps> = ({
     spriteHeight, 
     staggerFrames, 
     canvasWidth,
-    canvasHeight
-    // onAnimationEnd 
+    canvasHeight,
+    onAnimationEnd 
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
    
@@ -77,24 +77,24 @@ export const SpriteAnimation: React.FC<SpriteAnimationProps> = ({
         })
         playerImage.onload = () => {
             const animate = () => {
-                // if (gameFrame >= staggerFrames * spriteAnimations[playerState].loc.length) {
-                //     if (onAnimationEnd) {
-                //         onAnimationEnd(); // Call onAnimationEnd callback if provided
-                //     }
-                //     ctx?.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-                //     return; // Stop animation & clear canvas when it reaches end of sequence
-                // }
+                if (gameFrame >= staggerFrames * spriteAnimations[playerState].loc.length) {
+                    if (onAnimationEnd) {
+                        onAnimationEnd(); // Call onAnimationEnd callback if provided
+                    }
+                    ctx?.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+                    return; // Stop animation & clear canvas when it reaches end of sequence
+                }
                 
                 ctx?.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
                 let position = Math.floor(gameFrame/staggerFrames) % spriteAnimations[playerState].loc.length;     // cycle through horizontal animation
-                let frameX = spriteWidth * position;                        // frame within one animation row
-                let frameY = spriteAnimations[playerState].loc[position].y;      // animation row (incrementing will give you a different animation)
+                let frameX = spriteWidth * position;                            // frame within one animation row
+                let frameY = spriteAnimations[playerState].loc[position].y;     // animation row (incrementing will give you a different animation)
                 ctx?.drawImage(
                     playerImage, 
                     frameX, frameY,                  // Current frame
-                    spriteWidth, spriteHeight,                      // Frame size
-                    0, 0,                                           // Placement on canvas
-                    spriteWidth, spriteHeight                       // Size on canvas
+                    spriteWidth, spriteHeight,       // Frame size
+                    0, 0,                            // Placement on canvas
+                    spriteWidth, spriteHeight        // Size on canvas
                 );                     
                 gameFrame++;
                 requestAnimationFrame(animate);

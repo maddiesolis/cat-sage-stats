@@ -1,4 +1,4 @@
-// import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BackgroundAnimation } from './components/BackgroundAnimation';
 import background_reduced from './spritesheets/background_reduced.png'
 import hands_reduced from './spritesheets/hands_reduced.png'
@@ -14,38 +14,38 @@ const CanvasContainer = styled.div`
 `
 
 function App() {
-  // const [playerState, setPlayerState] = useState('none');
+  const [playerState, setPlayerState] = useState('none');
 
-  // const handleServerRequest = ({ serverPlayerState }: { serverPlayerState: string}) => {
-  //   setPlayerState(serverPlayerState);
-  // }
+  const handleServerRequest = ({ serverPlayerState }: { serverPlayerState: string}) => {
+    setPlayerState(serverPlayerState);
+  }
 
-  // useEffect(() => {
-  //   const ws = new WebSocket('wss://shark-app-epd3d.ondigitalocean.app');
+  useEffect(() => {
+    const ws = new WebSocket('wss://shark-app-epd3d.ondigitalocean.app');
 
-  //   // Error handler
-  //   ws.onerror = (error) => {
-  //       console.error('WebSocket error:', error);
-  //   };
+    // Error handler
+    ws.onerror = (error) => {
+        console.error('WebSocket error:', error);
+    };
 
-  //   // Listen for player state updates from the server
-  //   ws.onmessage = (event) => {
-  //       const data = JSON.parse(event.data);
-  //       handleServerRequest({ serverPlayerState: data.playerState });
-  //   };
+    // Listen for player state updates from the server
+    ws.onmessage = (event) => {
+        const data = JSON.parse(event.data);
+        handleServerRequest({ serverPlayerState: data.playerState });
+    };
 
-  //   // Close the WebSocket connection when the component unmounts
-  //   return () => {
-  //     if (ws.readyState === 1) {
-  //       ws.close();
-  //     }
-  //   };
-  // }, []);
+    // Close the WebSocket connection when the component unmounts
+    return () => {
+      if (ws.readyState === 1) {
+        ws.close();
+      }
+    };
+  }, []);
 
 
-  // const handleAnimationEnd = () => {
-  //   setPlayerState('none');
-  // };
+  const handleAnimationEnd = () => {
+    setPlayerState('none');
+  };
 
   return (
     <>
@@ -61,15 +61,14 @@ function App() {
           numFrames={13}
         />
         <SpriteAnimation 
-          // Change back to playerState
-          playerState={'hand1'} 
+          playerState={playerState} 
           spriteWidth={330} 
           spriteHeight={330} 
           staggerFrames={5} 
           spriteSheet={hands_reduced} 
           canvasWidth={330} 
           canvasHeight={330} 
-          // onAnimationEnd={handleAnimationEnd}
+          onAnimationEnd={handleAnimationEnd}
         />
       </CanvasContainer>
     </>
