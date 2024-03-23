@@ -1,7 +1,7 @@
 // import { useState, useEffect } from 'react';
 import { BackgroundAnimation } from './components/BackgroundAnimation';
-import background from './spritesheets/background.png'
-import hands from './spritesheets/hands.png'
+import background from './spritesheets/background2.png'
+import hands from './spritesheets/hands2.png'
 import styled from 'styled-components';
 import { InfoPopover } from './components/InfoPopover';
 import { SpriteAnimation } from './components/SpriteAnimation';
@@ -51,14 +51,16 @@ function App() {
     <>
       <InfoPopover/>
       <CanvasContainer>
-        <BackgroundAnimation spriteWidth={700} spriteHeight={688} staggerFrames={7} animationSheet={background} canvasWidth={700} canvasHeight={688} numFrames={13}/>
+        <BackgroundAnimation spriteWidth={407} spriteHeight={400} staggerFrames={7} animationSheet={background} canvasWidth={407} canvasHeight={400} numFrames={13}/>
         <SpriteAnimation 
           // Change back to playerState
           playerState={'hand1'} 
-          spriteWidth={700} 
-          spriteHeight={700} 
+          spriteWidth={200} 
+          spriteHeight={200} 
           staggerFrames={5} 
           spriteSheet={hands} 
+          canvasWidth={200} 
+          canvasHeight={200} 
           // onAnimationEnd={handleAnimationEnd}
         />
       </CanvasContainer>

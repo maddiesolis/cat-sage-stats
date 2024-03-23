@@ -10,6 +10,8 @@ interface SpriteAnimationProps {
     spriteWidth: number;
     spriteHeight: number;
     staggerFrames: number;
+    canvasWidth: number;
+    canvasHeight: number;
     // onAnimationEnd?: () => void;
 }
 export const SpriteAnimation: React.FC<SpriteAnimationProps> = ({ 
@@ -18,6 +20,8 @@ export const SpriteAnimation: React.FC<SpriteAnimationProps> = ({
     spriteWidth, 
     spriteHeight, 
     staggerFrames, 
+    canvasWidth,
+    canvasHeight
     // onAnimationEnd 
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -26,8 +30,10 @@ export const SpriteAnimation: React.FC<SpriteAnimationProps> = ({
         const canvas = canvasRef.current;
         if (!canvas || playerState === 'none') return; 
         const ctx = canvas.getContext('2d');
-        const CANVAS_WIDTH = canvas.width = 700;
-        const CANVAS_HEIGHT = canvas.height = 700;
+        // const CANVAS_WIDTH = canvas.width = 700;
+        // const CANVAS_HEIGHT = canvas.height = 700;
+        const CANVAS_WIDTH = canvas.width = canvasWidth;
+        const CANVAS_HEIGHT = canvas.height = canvasHeight;
         const playerImage = new Image();
         playerImage.src = spriteSheet;
         let gameFrame = 0;
