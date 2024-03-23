@@ -10,9 +10,16 @@ interface SpriteAnimationProps {
     spriteWidth: number;
     spriteHeight: number;
     staggerFrames: number;
-    onAnimationEnd?: () => void;
+    // onAnimationEnd?: () => void;
 }
-export const SpriteAnimation: React.FC<SpriteAnimationProps> = ({ playerState, spriteSheet, spriteWidth, spriteHeight, staggerFrames, onAnimationEnd }) => {
+export const SpriteAnimation: React.FC<SpriteAnimationProps> = ({ 
+    playerState, 
+    spriteSheet, 
+    spriteWidth, 
+    spriteHeight, 
+    staggerFrames, 
+    // onAnimationEnd 
+}) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
    
     useEffect(() => {
@@ -64,13 +71,13 @@ export const SpriteAnimation: React.FC<SpriteAnimationProps> = ({ playerState, s
         })
         playerImage.onload = () => {
             const animate = () => {
-                if (gameFrame >= staggerFrames * spriteAnimations[playerState].loc.length) {
-                    if (onAnimationEnd) {
-                        onAnimationEnd(); // Call onAnimationEnd callback if provided
-                    }
-                    ctx?.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-                    return; // Stop animation & clear canvas when it reaches end of sequence
-                }
+                // if (gameFrame >= staggerFrames * spriteAnimations[playerState].loc.length) {
+                //     if (onAnimationEnd) {
+                //         onAnimationEnd(); // Call onAnimationEnd callback if provided
+                //     }
+                //     ctx?.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+                //     return; // Stop animation & clear canvas when it reaches end of sequence
+                // }
                 
                 ctx?.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
                 let position = Math.floor(gameFrame/staggerFrames) % spriteAnimations[playerState].loc.length;     // cycle through horizontal animation
