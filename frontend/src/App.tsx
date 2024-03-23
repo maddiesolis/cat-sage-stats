@@ -63,12 +63,12 @@ function App() {
         <SpriteAnimation 
           // Change back to playerState
           playerState={'hand1'} 
-          spriteWidth={500} 
-          spriteHeight={500} 
+          spriteWidth={330} 
+          spriteHeight={330} 
           staggerFrames={5} 
           spriteSheet={hands_reduced} 
-          canvasWidth={500} 
-          canvasHeight={500} 
+          canvasWidth={330} 
+          canvasHeight={330} 
           // onAnimationEnd={handleAnimationEnd}
         />
       </CanvasContainer>
