@@ -25,14 +25,10 @@ server.listen(port, () => {
 // Listen for WebSocket connections
 wss.on('connection', (ws) => {
     console.log('New client connected');
-    
-    // Send initial sprite state when a client connects
-    sendAssaultStatUpdate();
 
     // Listen for messages from the client
     ws.on('message', (message) => {
         console.log(`Received message from client: ${message}`);
-        // You can implement further logic here if needed
     });
 
     // Handle client disconnection
