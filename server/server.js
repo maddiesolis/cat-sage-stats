@@ -25,14 +25,10 @@ server.listen(port, () => {
 // Listen for WebSocket connections
 wss.on('connection', (ws) => {
     console.log('New client connected');
-    
-    // Send initial player state when a client connects
-    sendPlayerStateUpdate();
 
     // Listen for messages from the client
     ws.on('message', (message) => {
         console.log(`Received message from client: ${message}`);
-        // You can implement further logic here if needed
     });
 
     // Handle client disconnection
@@ -41,10 +37,15 @@ wss.on('connection', (ws) => {
     });
 });
 
-// Function to send player state updates to all connected clients
-const sendPlayerStateUpdate = () => {
-    const playerState = getRandomPlayerState();
-    const update = JSON.stringify({ playerState });
+// Function to generate a random interval within a specified range
+const getRandomInterval = (max_interval, min_interval) => {
+    return Math.floor(Math.random() * (max_interval - min_interval)) + min_interval;
+};
+
+// Function to send sprite state updates to all connected clients
+const sendAssaultStatUpdate = () => {
+    const spriteState = getRandomSpriteState();
+    const update = JSON.stringify({ assaultSpriteState: spriteState });
     wss.clients.forEach(client => {
         if (client.readyState === WebSocket.OPEN) {
             client.send(update);
@@ -52,14 +53,14 @@ const sendPlayerStateUpdate = () => {
     });
 };
 
-// Sends random player state but ensures the same state isn't sent twice in a row
-let previousPlayerState = '';
-function getRandomPlayerState() {
+// Sends random sprite state but ensures the same state isn't sent twice in a row
+let previousSpriteState = '';
+function getRandomSpriteState() {
     let randomNumber;
-    let playerState;
+    let spriteState;
     do {
         randomNumber = Math.floor(Math.random() * 6);
-        playerState = [
+        spriteState = [
             'hand1',
             'hand2',
             'hand3',
@@ -67,28 +68,22 @@ function getRandomPlayerState() {
             'hand5',
             'hand6'
         ][randomNumber];
-    } while (playerState === previousPlayerState); // Ensure the new player state is different from the previous one
-    previousPlayerState = playerState; // Update the previous player state
-    return playerState;
+    } while (spriteState === previousSpriteState);  // Ensure the new sprite state is different from the previous one
+    previousSpriteState = spriteState;              // Update the previous sprite state
+    return spriteState;
 }
 
-// This range results in approx. 1929 updates per hour (reflects statistic)
-const MIN_INTERVAL = 1000;
-const MAX_INTERVAL = 3000;
-
-// Function to generate a random interval within the specified range
-const getRandomInterval = () => {
-    return Math.floor(Math.random() * (MAX_INTERVAL - MIN_INTERVAL)) + MIN_INTERVAL;
-};
-
-// Function to send player state updates to all connected clients
-const sendPlayerStateUpdateWithRandomInterval = () => {
-    const interval = getRandomInterval();
+// Function to send sprite state updates to all connected clients
+const sendAssaultStatUpdateWithRandomInterval = () => {
+    // This range results in approx. 1929 updates per hour (reflects statistic)
+    const min_interval = 1000;
+    const max_interval = 3000;
+    const interval = getRandomInterval(max_interval, min_interval);
     console.log(`Sending update. Next update in ${interval} milliseconds`);
-    sendPlayerStateUpdate();
+    sendAssaultStatUpdate();
 
     // Schedule the next update recursively
-    setTimeout(sendPlayerStateUpdateWithRandomInterval, interval);
+    setTimeout(sendAssaultStatUpdateWithRandomInterval, interval);
 };
 
-sendPlayerStateUpdateWithRandomInterval();
+sendAssaultStatUpdateWithRandomInterval();
