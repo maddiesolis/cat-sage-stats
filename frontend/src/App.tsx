@@ -3,6 +3,7 @@ import AnotherStat from './stats/AnotherStat';
 import AssaultStat from './stats/AssaultStat';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Homepage from './components/Homepage';
+import { ChakraProvider } from '@chakra-ui/react';
 
 const TestLayoutDiv = styled.div`
   display: flex;
@@ -13,16 +14,18 @@ const TestLayoutDiv = styled.div`
 
 function App() {
   return (
-    <BrowserRouter>
-        <Routes>
-            <Route path="/" element={<Homepage />} />
-            <Route path="/sexual-assaults" element={<AssaultStat />} />
-            <Route path="/another" element={<AnotherStat />} />
-            {/* Custom redirects */}
-            <Route path="/sexual-assaults" element={<Navigate to="/sexual-assaults" />} />
-            <Route path="/another" element={<Navigate to="/another" />} />
-        </Routes>
-    </BrowserRouter>
+    <ChakraProvider>
+      <BrowserRouter>
+          <Routes>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/sexual-assaults" element={<AssaultStat />} />
+              <Route path="/another" element={<AnotherStat />} />
+              {/* Custom redirects */}
+              <Route path="/sexual-assaults" element={<Navigate to="/sexual-assaults" />} />
+              <Route path="/another" element={<Navigate to="/another" />} />
+          </Routes>
+      </BrowserRouter>
+    </ChakraProvider>
   );
 }
 
