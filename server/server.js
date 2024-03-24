@@ -37,53 +37,44 @@ wss.on('connection', (ws) => {
     });
 });
 
+// GLOBAL VARIABLES
+let PREV_ASSAULT_SPRITE_STATE = '';
+let PREV_ANOTHER_SPRITE_STATE = '';
+
 // Function to generate a random interval within a specified range
 const getRandomInterval = (max_interval, min_interval) => {
     return Math.floor(Math.random() * (max_interval - min_interval)) + min_interval;
 };
 
 // Function to send sprite state updates to all connected clients
-const sendAssaultStatUpdate = () => {
-    const spriteState = getRandomSpriteState();
-    const update = JSON.stringify({ assaultSpriteState: spriteState });
+const sendStat = (min_interval, max_interval, states, previousSpriteState, update_text) => {
+    // Compute random interval within given range
+    const interval = getRandomInterval(max_interval, min_interval);
+    console.log(`Sending ${update_text} update. Next update in ${interval} milliseconds`);
+
+    // Select random sprite state
+    let randomNumber;
+    let spriteState;
+    do {
+        randomNumber = Math.floor(Math.random() * states.length);
+        spriteState = states[randomNumber];
+    } while (spriteState === previousSpriteState);  // Ensure the new sprite state is different from the previous one
+    previousSpriteState = spriteState;              // Update the previous sprite state
+
+    // Send update to all clients
+    const update = JSON.stringify({ [update_text]: spriteState });
     wss.clients.forEach(client => {
         if (client.readyState === WebSocket.OPEN) {
             client.send(update);
         }
     });
-};
-
-// Sends random sprite state but ensures the same state isn't sent twice in a row
-let previousSpriteState = '';
-function getRandomSpriteState() {
-    let randomNumber;
-    let spriteState;
-    do {
-        randomNumber = Math.floor(Math.random() * 6);
-        spriteState = [
-            'hand1',
-            'hand2',
-            'hand3',
-            'hand4',
-            'hand5',
-            'hand6'
-        ][randomNumber];
-    } while (spriteState === previousSpriteState);  // Ensure the new sprite state is different from the previous one
-    previousSpriteState = spriteState;              // Update the previous sprite state
-    return spriteState;
-}
-
-// Function to send sprite state updates to all connected clients
-const sendAssaultStatUpdateWithRandomInterval = () => {
-    // This range results in approx. 1929 updates per hour (reflects statistic)
-    const min_interval = 1000;
-    const max_interval = 3000;
-    const interval = getRandomInterval(max_interval, min_interval);
-    console.log(`Sending update. Next update in ${interval} milliseconds`);
-    sendAssaultStatUpdate();
 
     // Schedule the next update recursively
-    setTimeout(sendAssaultStatUpdateWithRandomInterval, interval);
+    setTimeout(() => sendStat(min_interval, max_interval, states, spriteState, update_text), interval);
 };
 
-sendAssaultStatUpdateWithRandomInterval();
+// Assault Stat (approx. 1929 updates per hour)
+sendStat(1000, 3000, ['hand1', 'hand2', 'hand3', 'hand4', 'hand5', 'hand6'], PREV_ASSAULT_SPRITE_STATE, 'assaultSpriteState');
+
+// Another Stat
+sendStat(5000, 10000, ['hand1', 'hand2', 'hand3', 'hand4', 'hand5', 'hand6'], PREV_ANOTHER_SPRITE_STATE, 'another');
