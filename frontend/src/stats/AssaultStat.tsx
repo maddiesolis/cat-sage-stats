@@ -21,8 +21,8 @@ function AssaultStat() {
   }
 
   useEffect(() => {
-    // const ws = new WebSocket('wss://shark-app-epd3d.ondigitalocean.app');
-    const ws = new WebSocket('ws://localhost:8080');
+    const ws = new WebSocket('wss://shark-app-epd3d.ondigitalocean.app');
+    // const ws = new WebSocket('ws://localhost:8080');
 
 
     // Error handler
