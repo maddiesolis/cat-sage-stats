@@ -1,10 +1,31 @@
+import styled from 'styled-components';
+import MissingStat from './stats/MissingStat';
 import AssaultStat from './stats/AssaultStat';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import Homepage from './components/Homepage';
+import { ChakraProvider } from '@chakra-ui/react';
+
+const TestLayoutDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 300px;
+`
 
 function App() {
   return (
-    <>
-      <AssaultStat/>
-    </>
+    <ChakraProvider>
+      <BrowserRouter>
+          <Routes>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/sexual-assaults" element={<AssaultStat />} />
+              <Route path="/missing-children" element={<MissingStat />} />
+              {/* Custom redirects */}
+              <Route path="/sexual-assaults" element={<Navigate to="/sexual-assaults" />} />
+              <Route path="/missing-children" element={<Navigate to="/missing-children" />} />
+          </Routes>
+      </BrowserRouter>
+    </ChakraProvider>
   );
 }
 

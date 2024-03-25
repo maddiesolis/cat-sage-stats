@@ -6,7 +6,7 @@ import { InfoPopover } from '../components/InfoPopover';
 import { BackgroundAnimation } from '../components/BackgroundAnimation';
 import { SpriteAnimation } from '../components/SpriteAnimation';
 
-const CanvasContainer = styled.div`
+export const CanvasContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,8 +21,8 @@ function AssaultStat() {
   }
 
   useEffect(() => {
-    const ws = new WebSocket('wss://shark-app-epd3d.ondigitalocean.app');
-    // const ws = new WebSocket('ws://localhost:8080');
+    // const ws = new WebSocket('wss://shark-app-epd3d.ondigitalocean.app');
+    const ws = new WebSocket('ws://localhost:8080');
 
 
     // Error handler
@@ -53,7 +53,18 @@ function AssaultStat() {
 
   return (
     <>
-      <InfoPopover/>
+      <InfoPopover
+        text="This is a visualisation of the 
+              frequency of sexual assaults 
+              against women.
+              Each time a hand touches the 
+              moon-like figure, a woman has been sexually 
+              assaulted somewhere in the world.
+              Data from the World Health Organization regarding sexual 
+              abuses against women was gathered and fed into this application's 
+              server. The server controls what is animated, reflecting
+              real-time sexual assault occurences."
+      />
       <CanvasContainer>
         <BackgroundAnimation
           spriteWidth={407} 
@@ -73,6 +84,32 @@ function AssaultStat() {
           canvasWidth={330} 
           canvasHeight={330} 
           onAnimationEnd={handleAnimationEnd}
+          animationStates={[
+            {
+                name: 'hand1',
+                frames: 17
+            },
+            {
+                name: 'hand2',
+                frames: 17
+            },
+            {
+                name: 'hand3',
+                frames: 17
+            },
+            {
+                name: 'hand4',
+                frames: 19
+            },
+            {
+                name: 'hand5',
+                frames: 22
+            },
+            {
+                name: 'hand6',
+                frames: 16
+            }
+        ]}
         />
       </CanvasContainer>
     </>

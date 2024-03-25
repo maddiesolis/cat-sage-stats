@@ -4,6 +4,10 @@ interface Frame {
     x: number;
     y: number;
 }
+interface AnimationStateProps {
+    name: string,
+    frames: number
+}
 interface SpriteAnimationProps {
     playerState: string;
     spriteSheet: string;
@@ -13,6 +17,7 @@ interface SpriteAnimationProps {
     canvasWidth: number;
     canvasHeight: number;
     onAnimationEnd?: () => void;
+    animationStates: AnimationStateProps[];
 }
 export const SpriteAnimation: React.FC<SpriteAnimationProps> = ({ 
     playerState, 
@@ -22,7 +27,8 @@ export const SpriteAnimation: React.FC<SpriteAnimationProps> = ({
     staggerFrames, 
     canvasWidth,
     canvasHeight,
-    onAnimationEnd 
+    onAnimationEnd,
+    animationStates
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
    
@@ -38,32 +44,6 @@ export const SpriteAnimation: React.FC<SpriteAnimationProps> = ({
         playerImage.src = spriteSheet;
         let gameFrame = 0;
         const spriteAnimations: { [key: string]: { loc: Frame[] }} = {};
-        const animationStates = [
-            {
-                name: 'hand1',
-                frames: 17
-            },
-            {
-                name: 'hand2',
-                frames: 17
-            },
-            {
-                name: 'hand3',
-                frames: 17
-            },
-            {
-                name: 'hand4',
-                frames: 19
-            },
-            {
-                name: 'hand5',
-                frames: 22
-            },
-            {
-                name: 'hand6',
-                frames: 16
-            }
-        ]
         animationStates.forEach((state, index) => {
             let frames: {loc: Frame[]} = {
                 loc: []
