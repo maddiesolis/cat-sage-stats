@@ -3,7 +3,7 @@ import angels_spritesheet from '../spritesheets/missing/angels-spritesheet-reduc
 import { InfoPopover } from '../components/InfoPopover';
 import { SpriteAnimation } from '../components/SpriteAnimation';
 import { BackgroundImage } from '../components/BackgroundImage';
-import background from '../spritesheets/missing/background.png'
+import background from '../spritesheets/missing/background-reduced.png'
 import { CanvasContainer } from './AssaultStat';
 
 function MissingStat() {
