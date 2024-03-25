@@ -73,6 +73,32 @@ function AssaultStat() {
           canvasWidth={330} 
           canvasHeight={330} 
           onAnimationEnd={handleAnimationEnd}
+          animationStates={[
+            {
+                name: 'hand1',
+                frames: 17
+            },
+            {
+                name: 'hand2',
+                frames: 17
+            },
+            {
+                name: 'hand3',
+                frames: 17
+            },
+            {
+                name: 'hand4',
+                frames: 19
+            },
+            {
+                name: 'hand5',
+                frames: 22
+            },
+            {
+                name: 'hand6',
+                frames: 16
+            }
+        ]}
         />
       </CanvasContainer>
     </>

@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import hands_reduced from '../spritesheets/sa/hands_reduced.png'
+import angel1 from '../spritesheets/missing/angel1.png'
 import { InfoPopover } from '../components/InfoPopover';
-import { SpriteAnimation } from '../components/SpriteAnimation';
+// import { SpriteAnimation } from '../components/SpriteAnimation';
 import { BackgroundImage } from '../components/BackgroundImage';
 import background from '../spritesheets/missing/background.png'
 import { CanvasContainer } from './AssaultStat';
+import { BackgroundAnimation } from '../components/BackgroundAnimation';
 
 function MissingStat() {
   const [missingSpriteState, setMissingSpriteState] = useState('none');
@@ -53,15 +54,30 @@ function MissingStat() {
           canvasWidth={500} 
           canvasHeight={500} 
         />
-        <SpriteAnimation 
+        {/* <SpriteAnimation 
           playerState={missingSpriteState} 
-          spriteWidth={330} 
-          spriteHeight={330} 
+          spriteWidth={900} 
+          spriteHeight={890} 
           staggerFrames={5} 
-          spriteSheet={hands_reduced} 
-          canvasWidth={330} 
-          canvasHeight={330} 
+          spriteSheet={angel1} 
+          canvasWidth={900} 
+          canvasHeight={890} 
           onAnimationEnd={handleAnimationEnd}
+          animationStates={[
+            {
+                name: 'angel1',
+                frames: 54
+            }
+          ]}
+        /> */}
+        <BackgroundAnimation
+          spriteWidth={900} 
+          spriteHeight={890} 
+          staggerFrames={4} 
+          animationSheet={angel1} 
+          canvasWidth={900} 
+          canvasHeight={890} 
+          numFrames={54}
         />
       </CanvasContainer>
     </>
