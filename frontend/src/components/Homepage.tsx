@@ -17,8 +17,8 @@ export default function Homepage() {
             <ChakraLink as={ReactRouterLink} to='/sexual-assaults'>
                 Sexual Assault Occurences Against Women
             </ChakraLink>
-            <ChakraLink as={ReactRouterLink} to='/another'>
-                Another Stat
+            <ChakraLink as={ReactRouterLink} to='/missing-children'>
+                Missing Children
             </ChakraLink>
         </PageContainer>
     )

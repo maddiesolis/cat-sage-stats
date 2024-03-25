@@ -6,7 +6,7 @@ import { InfoPopover } from '../components/InfoPopover';
 import { BackgroundAnimation } from '../components/BackgroundAnimation';
 import { SpriteAnimation } from '../components/SpriteAnimation';
 
-const CanvasContainer = styled.div`
+export const CanvasContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,8 +21,8 @@ function AssaultStat() {
   }
 
   useEffect(() => {
-    const ws = new WebSocket('wss://shark-app-epd3d.ondigitalocean.app');
-    // const ws = new WebSocket('ws://localhost:8080');
+    // const ws = new WebSocket('wss://shark-app-epd3d.ondigitalocean.app');
+    const ws = new WebSocket('ws://localhost:8080');
 
 
     // Error handler

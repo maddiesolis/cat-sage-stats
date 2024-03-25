@@ -1,23 +1,16 @@
 import { useState, useEffect } from 'react';
-import background_reduced from '../spritesheets/sa/background_reduced.png'
 import hands_reduced from '../spritesheets/sa/hands_reduced.png'
-import styled from 'styled-components';
 import { InfoPopover } from '../components/InfoPopover';
-import { BackgroundAnimation } from '../components/BackgroundAnimation';
 import { SpriteAnimation } from '../components/SpriteAnimation';
+import { BackgroundImage } from '../components/BackgroundImage';
+import background from '../spritesheets/missing/background.png'
+import { CanvasContainer } from './AssaultStat';
 
-const CanvasContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-`
+function MissingStat() {
+  const [missingSpriteState, setMissingSpriteState] = useState('none');
 
-function AnotherStat() {
-  const [spriteState, setSpriteState] = useState('none');
-
-  const handleServerRequest = ({ serverSpriteState }: { serverSpriteState: string}) => {
-    setSpriteState(serverSpriteState);
+  const handleMissingServerRequest = ({ serverSpriteState }: { serverSpriteState: string}) => {
+    setMissingSpriteState(serverSpriteState);
   }
 
   useEffect(() => {
@@ -33,9 +26,8 @@ function AnotherStat() {
     // Listen for player state updates from the server
     ws.onmessage = (event) => {
         const data = JSON.parse(event.data);
-        // Can use a prop for 'anotherSpriteState' instead
-        if (data.hasOwnProperty('another')) {
-          handleServerRequest({ serverSpriteState: data.another });
+        if (data.hasOwnProperty('missingSpriteState')) {
+          handleMissingServerRequest({ serverSpriteState: data.missingSpriteState });
         }
     };
 
@@ -49,24 +41,20 @@ function AnotherStat() {
 
 
   const handleAnimationEnd = () => {
-    setSpriteState('none');
+    setMissingSpriteState('none');
   };
 
   return (
     <>
       <InfoPopover/>
       <CanvasContainer>
-        {/* <BackgroundAnimation
-          spriteWidth={407} 
-          spriteHeight={400} 
-          staggerFrames={7} 
-          animationSheet={background_reduced} 
-          canvasWidth={407} 
-          canvasHeight={400} 
-          numFrames={13}
-        /> */}
+        <BackgroundImage
+          imageUrl={background}
+          canvasWidth={500} 
+          canvasHeight={500} 
+        />
         <SpriteAnimation 
-          playerState={spriteState} 
+          playerState={missingSpriteState} 
           spriteWidth={330} 
           spriteHeight={330} 
           staggerFrames={5} 
@@ -80,4 +68,4 @@ function AnotherStat() {
   );
 }
 
-export default AnotherStat;
+export default MissingStat;

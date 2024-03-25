@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import AnotherStat from './stats/AnotherStat';
+import MissingStat from './stats/MissingStat';
 import AssaultStat from './stats/AssaultStat';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Homepage from './components/Homepage';
@@ -19,10 +19,10 @@ function App() {
           <Routes>
               <Route path="/" element={<Homepage />} />
               <Route path="/sexual-assaults" element={<AssaultStat />} />
-              <Route path="/another" element={<AnotherStat />} />
+              <Route path="/missing-children" element={<MissingStat />} />
               {/* Custom redirects */}
               <Route path="/sexual-assaults" element={<Navigate to="/sexual-assaults" />} />
-              <Route path="/another" element={<Navigate to="/another" />} />
+              <Route path="/missing-children" element={<Navigate to="/missing-children" />} />
           </Routes>
       </BrowserRouter>
     </ChakraProvider>

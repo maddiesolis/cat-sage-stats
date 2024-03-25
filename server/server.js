@@ -39,7 +39,7 @@ wss.on('connection', (ws) => {
 
 // GLOBAL VARIABLES
 let PREV_ASSAULT_SPRITE_STATE = '';
-let PREV_ANOTHER_SPRITE_STATE = '';
+let PREV_MISSING_SPRITE_STATE = '';
 
 // Function to generate a random interval within a specified range
 const getRandomInterval = (max_interval, min_interval) => {
@@ -47,7 +47,7 @@ const getRandomInterval = (max_interval, min_interval) => {
 };
 
 // Function to send sprite state updates to all connected clients
-const sendStat = (min_interval, max_interval, states, previousSpriteState, update_text) => {
+const sendStatUpdates = (min_interval, max_interval, states, previousSpriteState, update_text) => {
     // Compute random interval within given range
     const interval = getRandomInterval(max_interval, min_interval);
     console.log(`Sending ${update_text} update. Next update in ${interval} milliseconds`);
@@ -70,11 +70,11 @@ const sendStat = (min_interval, max_interval, states, previousSpriteState, updat
     });
 
     // Schedule the next update recursively
-    setTimeout(() => sendStat(min_interval, max_interval, states, spriteState, update_text), interval);
+    setTimeout(() => sendStatUpdates(min_interval, max_interval, states, spriteState, update_text), interval);
 };
 
 // Assault Stat (approx. 1929 updates per hour)
-sendStat(1000, 3000, ['hand1', 'hand2', 'hand3', 'hand4', 'hand5', 'hand6'], PREV_ASSAULT_SPRITE_STATE, 'assaultSpriteState');
+sendStatUpdates(1000, 3000, ['hand1', 'hand2', 'hand3', 'hand4', 'hand5', 'hand6'], PREV_ASSAULT_SPRITE_STATE, 'assaultSpriteState');
 
-// Another Stat
-sendStat(5000, 10000, ['hand1', 'hand2', 'hand3', 'hand4', 'hand5', 'hand6'], PREV_ANOTHER_SPRITE_STATE, 'another');
+// Missing Children Stat
+sendStatUpdates(5000, 10000, ['hand1', 'hand2', 'hand3', 'hand4', 'hand5', 'hand6'], PREV_MISSING_SPRITE_STATE, 'missingSpriteState');
