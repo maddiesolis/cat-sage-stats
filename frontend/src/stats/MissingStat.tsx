@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import angels_spritesheet from '../spritesheets/missing/angels-spritesheet.png'
+import angels_spritesheet from '../spritesheets/missing/angels-spritesheet-reduced.png'
 import { InfoPopover } from '../components/InfoPopover';
 import { SpriteAnimation } from '../components/SpriteAnimation';
 import { BackgroundImage } from '../components/BackgroundImage';
