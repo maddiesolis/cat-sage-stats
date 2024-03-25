@@ -1,16 +1,8 @@
-import styled from 'styled-components';
 import MissingStat from './stats/MissingStat';
 import AssaultStat from './stats/AssaultStat';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Homepage from './components/Homepage';
 import { ChakraProvider } from '@chakra-ui/react';
-
-const TestLayoutDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  gap: 300px;
-`
 
 function App() {
   return (
