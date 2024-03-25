@@ -53,7 +53,18 @@ function AssaultStat() {
 
   return (
     <>
-      <InfoPopover/>
+      <InfoPopover
+        text="This is a visualisation of the 
+              frequency of sexual assaults 
+              against women.
+              Each time a hand touches the 
+              moon-like figure, a woman has been sexually 
+              assaulted somewhere in the world.
+              Data from the World Health Organization regarding sexual 
+              abuses against women was gathered and fed into this application's 
+              server. The server controls what is animated, reflecting
+              real-time sexual assault occurences."
+      />
       <CanvasContainer>
         <BackgroundAnimation
           spriteWidth={407} 

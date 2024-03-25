@@ -18,7 +18,11 @@ const PopoverDiv = styled.div`
     z-index: 1;     // Overlays canvas
 `
 
-export const InfoPopover: React.FC = () => {
+interface InfoPopoverProps {
+    text: string;
+}
+
+export const InfoPopover: React.FC<InfoPopoverProps> = ({ text }) => {
     // Popover placement depends on screen size
     const [reachedMinBreakPoint] = useMediaQuery('(max-width: 600px)');
     const popoverPlacement = reachedMinBreakPoint ? 'top' : 'left-start';
@@ -33,16 +37,7 @@ export const InfoPopover: React.FC = () => {
                     <PopoverArrow />
                     <PopoverCloseButton />
                     <PopoverBody fontSize={18}>
-                        This is a visualisation of the 
-                        frequency of sexual assaults 
-                        against women.
-                        Each time a hand touches the 
-                        moon-like figure, a woman has been sexually 
-                        assaulted somewhere in the world.
-                        Data from the World Health Organization regarding sexual 
-                        abuses against women was gathered and fed into this application's 
-                        server. The server controls what is animated, reflecting
-                        real-time sexual assault occurences.
+                        {text}
                     </PopoverBody>
                 </PopoverContent>
             </Popover>
