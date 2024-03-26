@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react';
 import angels_spritesheet from '../spritesheets/missing/angels-spritesheet.png'
+import angels_spritesheet_reduced from '../spritesheets/missing/angels-spritesheet-reduced.png'
 import { InfoPopover } from '../components/InfoPopover';
 import { SpriteAnimation } from '../components/SpriteAnimation';
 import { BackgroundImage } from '../components/BackgroundImage';
 import background from '../spritesheets/missing/background-reduced.png'
 import { CanvasContainer } from './AssaultStat';
+import { useMediaQuery } from '@chakra-ui/react';
 
 function MissingStat() {
   const [missingSpriteState, setMissingSpriteState] = useState('none');
+  const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
 
   const handleMissingServerRequest = ({ serverSpriteState }: { serverSpriteState: string}) => {
     setMissingSpriteState(serverSpriteState);
@@ -63,12 +66,12 @@ function MissingStat() {
         />
         <SpriteAnimation 
           playerState={missingSpriteState} 
-          spriteWidth={900} 
-          spriteHeight={900} 
-          staggerFrames={3} 
-          spriteSheet={angels_spritesheet} 
-          canvasWidth={900} 
-          canvasHeight={900} 
+          spriteWidth={isLargerThan800 ? 900 : 330} 
+          spriteHeight={isLargerThan800 ? 900 : 330} 
+          staggerFrames={4} 
+          spriteSheet={isLargerThan800 ? angels_spritesheet : angels_spritesheet_reduced} 
+          canvasWidth={isLargerThan800 ? 900 : 330} 
+          canvasHeight={isLargerThan800 ? 900 : 330} 
           onAnimationEnd={handleAnimationEnd}
           animationStates={[
             {
