@@ -53,7 +53,7 @@ function MissingStat() {
       height='100vh'
       display={reachedMinBreakPoint ? '' : 'grid'}
       gridTemplateColumns={reachedMinBreakPoint ? '' : '1fr 7fr 1fr'}
-      padding={10}
+      padding={reachedMinBreakPoint ? 4 : 10}
     >
       <Box>
         <BackButton/>

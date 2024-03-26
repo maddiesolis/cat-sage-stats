@@ -8,7 +8,7 @@ const HomepageButton: React.FC<{children: React.ReactNode }> = ({ children }) =>
     return (
         <ChakraButton
             borderRadius='full'
-            size={reachedMinBreakPoint ? 'sm' : 'lg'}
+            size={reachedMinBreakPoint ? 'md' : 'lg'}
             fontWeight='600'
             color='#223038'
             backgroundColor={'#eff0f1'}
@@ -37,8 +37,8 @@ export default function Homepage() {
                 alignItems="center"
                 justifyContent={reachedMinBreakPoint ? "start" : "space-between"}
                 height={reachedMinBreakPoint ? "100%" : "60%"}
-                gap={reachedMinBreakPoint ? "2rem" : "0"}
-                paddingTop={reachedMinBreakPoint ? "2rem" : "0"}
+                gap={reachedMinBreakPoint ? "3rem" : "0"}
+                paddingTop={reachedMinBreakPoint ? "6rem" : "0"}
                 width="fit-content"
             >
                 <Heading
@@ -49,7 +49,7 @@ export default function Homepage() {
                     CAT SAGE STATS
                 </Heading>
                 <Text 
-                    width={reachedMinBreakPoint ? '300px' : '500px'} 
+                    width={reachedMinBreakPoint ? '350px' : '500px'} 
                     textAlign="center" 
                     fontSize={reachedMinBreakPoint ? 'md' : 'lg'} 
                     color="#1f2d36"
