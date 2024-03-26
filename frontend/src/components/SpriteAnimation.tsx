@@ -36,8 +36,6 @@ export const SpriteAnimation: React.FC<SpriteAnimationProps> = ({
         const canvas = canvasRef.current;
         if (!canvas || playerState === 'none') return; 
         const ctx = canvas.getContext('2d');
-        // const CANVAS_WIDTH = canvas.width = 700;
-        // const CANVAS_HEIGHT = canvas.height = 700;
         const CANVAS_WIDTH = canvas.width = canvasWidth;
         const CANVAS_HEIGHT = canvas.height = canvasHeight;
         const playerImage = new Image();

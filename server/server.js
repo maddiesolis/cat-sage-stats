@@ -77,4 +77,4 @@ const sendStatUpdates = (min_interval, max_interval, states, previousSpriteState
 sendStatUpdates(1000, 3000, ['hand1', 'hand2', 'hand3', 'hand4', 'hand5', 'hand6'], PREV_ASSAULT_SPRITE_STATE, 'assaultSpriteState');
 
 // Missing Children Stat
-sendStatUpdates(2000, 6000, ['angel1', 'angel2', 'angel3', 'angel4', 'angel5', 'angel6', 'angel7'], PREV_MISSING_SPRITE_STATE, 'missingSpriteState');
+sendStatUpdates(3000, 6000, ['angel1', 'angel2', 'angel3', 'angel4', 'angel5', 'angel6', 'angel7'], PREV_MISSING_SPRITE_STATE, 'missingSpriteState');
