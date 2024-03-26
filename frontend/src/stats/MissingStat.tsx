@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import angels_spritesheet from '../spritesheets/missing/angels-spritesheet-reduced-mobile.png'
+import angels_spritesheet from '../spritesheets/missing/angels-spritesheet.png'
 import { InfoPopover } from '../components/InfoPopover';
 import { SpriteAnimation } from '../components/SpriteAnimation';
 import { BackgroundImage } from '../components/BackgroundImage';
@@ -63,12 +63,12 @@ function MissingStat() {
         />
         <SpriteAnimation 
           playerState={missingSpriteState} 
-          spriteWidth={330} 
-          spriteHeight={330} 
+          spriteWidth={900} 
+          spriteHeight={900} 
           staggerFrames={3} 
           spriteSheet={angels_spritesheet} 
-          canvasWidth={330} 
-          canvasHeight={330} 
+          canvasWidth={900} 
+          canvasHeight={900} 
           onAnimationEnd={handleAnimationEnd}
           animationStates={[
             {
