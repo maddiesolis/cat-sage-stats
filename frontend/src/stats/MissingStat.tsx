@@ -58,8 +58,8 @@ function MissingStat() {
       <CanvasContainer>
         <BackgroundImage
           imageUrl={background}
-          canvasWidth={500} 
-          canvasHeight={500} 
+          canvasWidth={300} 
+          canvasHeight={300} 
         />
         <SpriteAnimation 
           playerState={missingSpriteState} 
