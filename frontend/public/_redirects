@@ -1,0 +1,6 @@
+# Redirects from Netlify to your React app routes
+/sexual-assaults.html         /sexual-assaults          200
+/missing-children.html        /missing-children         200
+
+# Default redirect to handle any unmatched routes
+/*               /           200
