@@ -3,7 +3,7 @@ import angels_spritesheet from '../spritesheets/missing/angels-spritesheet.png'
 import angels_spritesheet_reduced from '../spritesheets/missing/angels-spritesheet-reduced.png'
 import { InfoPopover } from '../components/InfoPopover';
 import { SpriteAnimation } from '../components/SpriteAnimation';
-import background from '../spritesheets/missing/background-reduced.png'
+import blue_background_image from '../spritesheets/missing/blue-background-image-reduced.png'
 import { CanvasContainer } from './AssaultStat';
 import { useMediaQuery, Image, Box } from '@chakra-ui/react';
 import BackButton from '../components/BackButton';
@@ -60,7 +60,7 @@ function MissingStat() {
       </Box>
       <CanvasContainer>
         <Image
-          src={background} // Replace with your image source
+          src={blue_background_image}
           sx={{
             position: 'absolute',
             top: ['4.5rem', null, null, '7rem'], // Responsive styles for top property
