@@ -114,10 +114,10 @@ function MissingStat() {
         text="This is a visualisation of the frequency
               that children go missing globally. Each time 
               an angel's portrait is displayed, a child goes missing.
-              Data from ORGANIZATION regarding the number of missing children 
-              cases per country was gathered and fed into this application's 
+              Data from the International Centre for Missing and Exploited 
+              Children was gathered and fed into this application's 
               server. The server controls what is animated, reflecting
-              real-time childrens' disappearances."
+              real-time children's disappearances."
       />
     </Box>
   );
