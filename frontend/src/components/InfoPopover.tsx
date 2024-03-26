@@ -33,7 +33,7 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({ text }) => {
                 <PopoverTrigger>
                 <Button fontSize={20}>About</Button>
                 </PopoverTrigger>
-                <PopoverContent style={{boxShadow:"none"}} w={popoverSize}>
+                <PopoverContent style={{boxShadow:"none"}} w={popoverSize} padding='0.5rem'>
                     <PopoverArrow />
                     <PopoverCloseButton />
                     <PopoverBody fontSize={18}>
