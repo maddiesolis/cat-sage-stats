@@ -34,6 +34,9 @@ export const InfoPopover: React.FC<InfoPopoverProps> = ({ text }) => {
                 <PopoverTrigger>
                 <Button
                     size={reachedMinBreakPoint ? 'md' : 'lg'}
+                    fontSize={reachedMinBreakPoint ? 'lg' : 'xl'}
+                    fontWeight={700}
+                    color='#223038'
                     bg='#eff0f1' 
                     _hover={{ bg: '#e6e7e9' }}
                     fontFamily="'DM Sans Variable', sans-serif"

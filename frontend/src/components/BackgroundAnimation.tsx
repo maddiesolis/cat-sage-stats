@@ -7,7 +7,6 @@ export const StyledCanvas = styled.canvas`
     width: 700px;
     height: 700px;
     border-radius: 8px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px;
 
     @media (min-width: 1600px) {
         top: 7rem;

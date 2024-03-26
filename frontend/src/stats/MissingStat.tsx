@@ -5,11 +5,13 @@ import { InfoPopover } from '../components/InfoPopover';
 import { SpriteAnimation } from '../components/SpriteAnimation';
 import background from '../spritesheets/missing/background-reduced.png'
 import { CanvasContainer } from './AssaultStat';
-import { useMediaQuery, Image } from '@chakra-ui/react';
+import { useMediaQuery, Image, Box } from '@chakra-ui/react';
+import BackButton from '../components/BackButton';
 
 function MissingStat() {
   const [missingSpriteState, setMissingSpriteState] = useState('none');
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
+  const [reachedMinBreakPoint] = useMediaQuery('(max-width: 600px)');
 
   const handleMissingServerRequest = ({ serverSpriteState }: { serverSpriteState: string}) => {
     setMissingSpriteState(serverSpriteState);
@@ -47,28 +49,26 @@ function MissingStat() {
   };
 
   return (
-    <>
-      <InfoPopover 
-        text="This is a visualisation of the frequency
-              that children go missing globally. Each time 
-              an angel's portrait is displayed, a child goes missing.
-              Data from ORGANIZATION regarding the number of missing children 
-              cases per country was gathered and fed into this application's 
-              server. The server controls what is animated, reflecting
-              real-time childrens' disappearances."
-      />
+    <Box
+      height='100vh'
+      display={reachedMinBreakPoint ? '' : 'grid'}
+      gridTemplateColumns={reachedMinBreakPoint ? '' : '1fr 7fr 1fr'}
+      padding={10}
+    >
+      <Box>
+        <BackButton/>
+      </Box>
       <CanvasContainer>
-      <Image
-        src={background} // Replace with your image source
-        sx={{
-          position: 'absolute',
-          top: ['4.5rem', null, null, '7rem'], // Responsive styles for top property
-          width: ['300px', '500px', '700px'], // Adjusts width at 0px, 600px, and 800px breakpoints
-          height: ['300px', '500px', '700px'], // Adjusts height at the same breakpoints as width
-          borderRadius: '8px',
-          boxShadow: 'rgba(0, 0, 0, 0.25) 0px 5px 15px',
-        }}
-      />
+        <Image
+          src={background} // Replace with your image source
+          sx={{
+            position: 'absolute',
+            top: ['4.5rem', null, null, '7rem'], // Responsive styles for top property
+            width: ['300px', '500px', '700px'], // Adjusts width at 0px, 600px, and 800px breakpoints
+            height: ['300px', '500px', '700px'], // Adjusts height at the same breakpoints as width
+            borderRadius: '8px',
+          }}
+        />
         <SpriteAnimation 
           playerState={missingSpriteState} 
           spriteWidth={isLargerThan800 ? 900 : 280} 
@@ -110,7 +110,16 @@ function MissingStat() {
           ]}
         />
       </CanvasContainer>
-    </>
+      <InfoPopover 
+        text="This is a visualisation of the frequency
+              that children go missing globally. Each time 
+              an angel's portrait is displayed, a child goes missing.
+              Data from ORGANIZATION regarding the number of missing children 
+              cases per country was gathered and fed into this application's 
+              server. The server controls what is animated, reflecting
+              real-time childrens' disappearances."
+      />
+    </Box>
   );
 }
 

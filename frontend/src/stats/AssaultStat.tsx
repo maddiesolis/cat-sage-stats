@@ -6,7 +6,8 @@ import styled from 'styled-components';
 import { InfoPopover } from '../components/InfoPopover';
 import { BackgroundAnimation } from '../components/BackgroundAnimation';
 import { SpriteAnimation } from '../components/SpriteAnimation';
-import { useMediaQuery } from '@chakra-ui/react';
+import { Box, useMediaQuery } from '@chakra-ui/react';
+import BackButton from '../components/BackButton';
 
 export const CanvasContainer = styled.div`
   display: flex;
@@ -18,6 +19,7 @@ export const CanvasContainer = styled.div`
 function AssaultStat() {
   const [assaultSpriteState, setAssaultSpriteState] = useState('none');
   const [isLargerThan800] = useMediaQuery('(min-width: 800px)');
+  const [reachedMinBreakPoint] = useMediaQuery('(max-width: 600px)');
 
   const handleAssaultServerRequest = ({ serverSpriteState }: { serverSpriteState: string}) => {
     setAssaultSpriteState(serverSpriteState);
@@ -55,19 +57,15 @@ function AssaultStat() {
   };
 
   return (
-    <>
-      <InfoPopover
-        text="This is a visualisation of the 
-              frequency of sexual assaults 
-              against women.
-              Each time a hand touches the 
-              moon-like figure, a woman has been sexually 
-              assaulted somewhere in the world.
-              Data from the World Health Organization regarding sexual 
-              abuses against women was gathered and fed into this application's 
-              server. The server controls what is animated, reflecting
-              real-time sexual assault occurences."
-      />
+    <Box
+      height='100vh'
+      display={reachedMinBreakPoint ? '' : 'grid'}
+      gridTemplateColumns={reachedMinBreakPoint ? '' : '1fr 7fr 1fr'}
+      padding={10}
+    >
+      <Box>
+        <BackButton/>
+      </Box>
       <CanvasContainer>
         <BackgroundAnimation
           spriteWidth={407} 
@@ -115,7 +113,19 @@ function AssaultStat() {
         ]}
         />
       </CanvasContainer>
-    </>
+      <InfoPopover
+        text="This is a visualisation of the 
+              frequency of sexual assaults 
+              against women.
+              Each time a hand touches the 
+              moon-like figure, a woman has been sexually 
+              assaulted somewhere in the world.
+              Data from the World Health Organization regarding sexual 
+              abuses against women was gathered and fed into this application's 
+              server. The server controls what is animated, reflecting
+              real-time sexual assault occurences."
+      />
+    </Box>
   );
 }
 
