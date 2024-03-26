@@ -66,12 +66,12 @@ function MissingStat() {
         />
         <SpriteAnimation 
           playerState={missingSpriteState} 
-          spriteWidth={isLargerThan800 ? 900 : 330} 
-          spriteHeight={isLargerThan800 ? 900 : 330} 
+          spriteWidth={isLargerThan800 ? 900 : 280} 
+          spriteHeight={isLargerThan800 ? 900 : 280} 
           staggerFrames={4} 
           spriteSheet={isLargerThan800 ? angels_spritesheet : angels_spritesheet_reduced} 
-          canvasWidth={isLargerThan800 ? 900 : 330} 
-          canvasHeight={isLargerThan800 ? 900 : 330} 
+          canvasWidth={isLargerThan800 ? 900 : 280} 
+          canvasHeight={isLargerThan800 ? 900 : 280} 
           onAnimationEnd={handleAnimationEnd}
           animationStates={[
             {
