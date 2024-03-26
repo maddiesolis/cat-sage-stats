@@ -3,10 +3,9 @@ import angels_spritesheet from '../spritesheets/missing/angels-spritesheet.png'
 import angels_spritesheet_reduced from '../spritesheets/missing/angels-spritesheet-reduced.png'
 import { InfoPopover } from '../components/InfoPopover';
 import { SpriteAnimation } from '../components/SpriteAnimation';
-import { BackgroundImage } from '../components/BackgroundImage';
 import background from '../spritesheets/missing/background-reduced.png'
 import { CanvasContainer } from './AssaultStat';
-import { useMediaQuery } from '@chakra-ui/react';
+import { useMediaQuery, Image } from '@chakra-ui/react';
 
 function MissingStat() {
   const [missingSpriteState, setMissingSpriteState] = useState('none');
@@ -59,11 +58,17 @@ function MissingStat() {
               real-time childrens' disappearances."
       />
       <CanvasContainer>
-        <BackgroundImage
-          imageUrl={background}
-          canvasWidth={300} 
-          canvasHeight={300} 
-        />
+      <Image
+        src={background} // Replace with your image source
+        sx={{
+          position: 'absolute',
+          top: ['4.5rem', null, null, '7rem'], // Responsive styles for top property
+          width: ['300px', '500px', '700px'], // Adjusts width at 0px, 600px, and 800px breakpoints
+          height: ['300px', '500px', '700px'], // Adjusts height at the same breakpoints as width
+          borderRadius: '8px',
+          boxShadow: 'rgba(0, 0, 0, 0.25) 0px 5px 15px',
+        }}
+      />
         <SpriteAnimation 
           playerState={missingSpriteState} 
           spriteWidth={isLargerThan800 ? 900 : 280} 
