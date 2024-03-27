@@ -5,8 +5,9 @@ import { InfoPopover } from '../components/InfoPopover';
 import { SpriteAnimation } from '../components/SpriteAnimation';
 import blue_background_image from '../spritesheets/missing/blue-background-image-reduced.png'
 import { CanvasContainer } from './AssaultStat';
-import { useMediaQuery, Image, Box } from '@chakra-ui/react';
+import { useMediaQuery, Box } from '@chakra-ui/react';
 import BackButton from '../components/BackButton';
+import { BackgroundImage } from '../components/BackgroundImage';
 
 function MissingStat() {
   const [missingSpriteState, setMissingSpriteState] = useState('none');
@@ -59,15 +60,10 @@ function MissingStat() {
         <BackButton/>
       </Box>
       <CanvasContainer>
-        <Image
-          src={blue_background_image}
-          sx={{
-            position: 'absolute',
-            top: ['4.5rem', null, null, '7rem'], // Responsive styles for top property
-            width: ['300px', '500px', '700px'], // Adjusts width at 0px, 600px, and 800px breakpoints
-            height: ['300px', '500px', '700px'], // Adjusts height at the same breakpoints as width
-            borderRadius: '8px',
-          }}
+        <BackgroundImage
+          imageUrl={blue_background_image}
+          canvasWidth={300}
+          canvasHeight={300}
         />
         <SpriteAnimation 
           playerState={missingSpriteState} 
