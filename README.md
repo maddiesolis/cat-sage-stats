@@ -1,7 +1,8 @@
 # Cat Sage Stats
+Developed in March, 2024.
 
 ## Tech Stack
-**Frontend**: React with Typescript
+**Frontend**: React app using Typescript
 
 **Server**: Node.js with Express
 
