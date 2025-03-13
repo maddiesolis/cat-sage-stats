@@ -1,4 +1,4 @@
-# Cat Sage Stats
+# Data Visualization (Cat Sage Stats)
 Developed in March, 2024.
 
 ## Tech Stack
