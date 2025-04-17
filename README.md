@@ -4,7 +4,7 @@ Developed in March, 2024.
 ## Tech Stack
 **Frontend**: React app using Typescript and Chakra UI
 
-**Server**: Node.js with Express
+**Server**: Node.js with Express and WebSockets
 
 ## Concept
 Visualization of frequency of sexual assault against women. The site is a simulation of receiving real-time data and reflecting that data visually. Every time a hand touches the moon/figure, a woman is sexually assaulted. As there is no live data recorded for this statistic, I approximated the frequency using known statistics (detailed below).
