@@ -2,7 +2,7 @@
 Developed in March, 2024.
 
 ## Tech Stack
-**Frontend**: React app using Typescript
+**Frontend**: React app using Typescript and Chakra UI
 
 **Server**: Node.js with Express
 
